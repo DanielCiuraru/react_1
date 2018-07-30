@@ -51,7 +51,11 @@ class App extends Component {
     if(this.state.showPersons){
       persons = (
         <div>
-          <Person 
+          { this.state.persons.map((person)=>{
+              return <Person name={person.name} age={person.age} />;
+            })
+          }
+          {/* <Person 
           name={this.state.persons[0].name} 
           age={this.state.persons[0].age}
           changeName={this.nameChangeHandler}/>
@@ -61,7 +65,7 @@ class App extends Component {
           <Person 
           click={this.switchNameHandler.bind(this, 'Daniel')}
           name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}>I'm a dog</Person>
+          age={this.state.persons[1].age}>I'm a dog</Person> */}
         </div>
       );
     }
