@@ -11,19 +11,14 @@ class App extends Component {
     ]
   }
 
-  switchNameHandler = (newName) => {
-    //Dont do this: this.state.persons[0].name = 'Daniel';
-    this.setState({    
-      persons: [
-        {name: newName, age: 31},
-        {name: 'Suki', age: 7},
-        {name: 'Adi', age: 31},
-      ],
-      showPersons: false
-  });
+  deletePersonHandler = (index) => {
+    //const persons = this.state.persons.slice(); //copys the full array (otherwise its a reference)
+    const persons = [...this.state.persons]; //this also copys the array by spreading the items in a new array
+    persons.splice(index, 1);
+    this.setState({persons: persons});
   }
 
-  togglePersonsHandler = () => {
+  togglePersonsHandler = (index) => {
     this.setState({    
       showPersons: !this.state.showPersons
     });
@@ -31,9 +26,9 @@ class App extends Component {
 
   nameChangeHandler = (event) => {
     this.setState({    persons: [
-      {name: event.target.value, age: 31},
-      {name: 'Suki', age: 7},
-      {name: 'Adi', age: 31},
+      { id: 0, name: event.target.value, age: 31},
+      { id: 1, name: 'Suki', age: 7},
+      { id: 2, name: 'Adi', age: 31},
     ]});
   }
 
@@ -51,21 +46,14 @@ class App extends Component {
     if(this.state.showPersons){
       persons = (
         <div>
-          { this.state.persons.map((person)=>{
-              return <Person name={person.name} age={person.age} />;
-            })
-          }
-          {/* <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}
-          changeName={this.nameChangeHandler}/>
-          <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}/>
-          <Person 
-          click={this.switchNameHandler.bind(this, 'Daniel')}
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}>I'm a dog</Person> */}
+          { this.state.persons.map((person, index)=>{
+              return <Person 
+              click={(index) => this.deletePersonHandler(index)}
+              name={person.name} 
+              age={person.age} 
+              key={person.id}
+              />;
+            })}
         </div>
       );
     }
