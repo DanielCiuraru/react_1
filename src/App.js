@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, {StyleRoot}  from 'radium';
 
 class App extends Component {
   state = {
@@ -74,13 +74,15 @@ class App extends Component {
       classes.push('bold');
     }
 
-
+    //to use features like media queries, we need to wrap the main div with styleroot off the raidum package
     return (
-      <div className="App">
-      <p className={classes.join(' ')}>React!!!!</p>
-      <button style={style} onClick={this.togglePersonsHandler}>Toogle Persons</button>      
-      {persons}
-      </div>
+      <StyleRoot>  
+        <div className="App">
+          <p className={classes.join(' ')}>React!!!!</p>
+          <button style={style} onClick={this.togglePersonsHandler}>Toogle Persons</button>      
+          {persons}
+        </div>
+      </StyleRoot>
     );
     //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'React'));
   }
