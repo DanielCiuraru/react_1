@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -61,17 +61,17 @@ class App extends Component {
     }
 
     //let classes = ['red', 'bold'].join(' '); //join the css classes with space in-between
-    const classes = [];
+    const assignedClasses = [];
     if(this.state.persons.length <= 2){
-      classes.push('red');
+      assignedClasses.push('red');
     }
     if(this.state.persons.length <= 1){
-      classes.push('bold');
+      assignedClasses.push('bold');
     }
 
     return (
-        <div className="App">
-          <p className={classes.join(' ')}>React!!!!</p>
+        <div className={classes.App}>
+          <p className={assignedClasses.join(' ')}>React!!!!</p>
           <button style={style} onClick={this.togglePersonsHandler}>Toogle Persons</button>      
           {persons}
         </div>
