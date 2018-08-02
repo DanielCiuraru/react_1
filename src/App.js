@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import Radium from 'radium';
 
 class App extends Component {
   state = {
@@ -38,7 +39,11 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': { //pseudo selectors are added like this
+        backgroundColor: 'lightgreen',
+        color:'black'
+      }
     };
 
     let persons = null;
@@ -81,4 +86,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App); //higher order component - wrapping component adds functionality to this component
