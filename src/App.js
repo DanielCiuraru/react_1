@@ -42,6 +42,7 @@ class App extends Component {
     };
 
     let persons = null;
+    let btnClass = '';
 
     if(this.state.showPersons){
       persons = (
@@ -58,21 +59,13 @@ class App extends Component {
         </div>
       );
       style.backgroundColor = 'grey';
-    }
-
-    //let classes = ['red', 'bold'].join(' '); //join the css classes with space in-between
-    const assignedClasses = [];
-    if(this.state.persons.length <= 2){
-      assignedClasses.push('red');
-    }
-    if(this.state.persons.length <= 1){
-      assignedClasses.push('bold');
+      btnClass = classes.Red;
     }
 
     return (
         <div className={classes.App}>
-          <p className={assignedClasses.join(' ')}>React!!!!</p>
-          <button style={style} onClick={this.togglePersonsHandler}>Toogle Persons</button>      
+          <p>React!!!!</p>
+          <button class={btnClass} onClick={this.togglePersonsHandler}>Toogle Persons</button>      
           {persons}
         </div>
     );
