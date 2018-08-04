@@ -25,7 +25,7 @@
   background-color: red;
 }
 
-.App button.Red:hober {
+.App button.Red:hover {
   background-color: salmon;
   color: black;
 }
